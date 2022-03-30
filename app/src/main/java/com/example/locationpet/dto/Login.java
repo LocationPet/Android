@@ -45,14 +45,14 @@ public class Login {
         @SerializedName("userPassword")
         private String userPassword;
 
-        public Request(String userEmail, String userPassword){
+        public Request(String userEmail, String userPassword){ // SETTER 객체변수에 값을 설정함..
 
             this.userEmail = userEmail;
             this.userPassword = userPassword;
         }
     }
 
-    public class Response{
+    public static class Response{
         @SerializedName("info")
         private Info info;
         @SerializedName("animal")
@@ -60,11 +60,15 @@ public class Login {
         @SerializedName("location")
         private Location location;
         @SerializedName("token")
-        private Token token;
-        @SerializedName("userEmail")
+        private String token;
         private String userEmail;
         public String getUserEmail (){
             return this.userEmail;
         }
+
+        public Response(String token) {
+            this.token = token;
+        }
+        public String getToken () {return this.token; }
     }
 }

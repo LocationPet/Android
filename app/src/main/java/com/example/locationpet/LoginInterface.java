@@ -4,6 +4,7 @@ import com.example.locationpet.dto.Login;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface LoginInterface {
@@ -14,5 +15,10 @@ public interface LoginInterface {
         //매개변수 '@Path("post") String post' - 매개변수 post가 @Path("post")를 보고 @GET 내부 {post}에 대입
     Call<Login.Response> PostRequest(
             @Body Login.Request request
+    );
+
+    Call<Login.Response> PostToken (
+            @Header("Authorization")
+            @Body Login.Response tokenResponse
     );
 }
