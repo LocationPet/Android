@@ -18,7 +18,6 @@ public interface LoginInterface {
     );
 
     Call<Login.Response> PostToken (
-            @Header("Authorization")
-            @Body Login.Response tokenResponse
+            @Body Login.TokenRequest tokenRequest
     );
 }

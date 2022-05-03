@@ -7,7 +7,8 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16576086956521738" />
         <entry key="app/src/main/res/layout/login_activity.xml" value="0.37555700961543936" />
         <entry key="app/src/main/res/layout/login_ctivity.xml" value="0.16576086956521738" />
-        <entry key="app/src/main/res/layout/register_activity.xml" value="0.19895833333333332" />
+        <entry key="app/src/main/res/layout/picker.xml" value="0.24592391304347827" />
+        <entry key="app/src/main/res/layout/register_activity.xml" value="0.25" />
       </map>
     </option>
   </component>

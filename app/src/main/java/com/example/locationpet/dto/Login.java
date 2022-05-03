@@ -52,6 +52,19 @@ public class Login {
         }
     }
 
+    public static class TokenRequest{
+        @SerializedName("accesToken")
+        private String accesToken;
+
+        @SerializedName("refreshToken")
+        private String refreshToken;
+
+        public TokenRequest(String accesToken, String refreshToken) {
+            this.accesToken = accesToken;
+            this.refreshToken = refreshToken;
+        }
+    }
+
     public static class Response{
         @SerializedName("info")
         private Info info;
@@ -60,15 +73,16 @@ public class Login {
         @SerializedName("location")
         private Location location;
         @SerializedName("token")
-        private String token;
+        private Token token;
+
+        @SerializedName("userEmail")
         private String userEmail;
         public String getUserEmail (){
             return this.userEmail;
         }
 
-        public Response(String token) {
-            this.token = token;
-        }
-        public String getToken () {return this.token; }
+        @SerializedName("accesToken")
+        private String accesToken;
+        public String getAccesToken() { return this.accesToken; }
     }
 }

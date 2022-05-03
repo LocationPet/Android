@@ -1,7 +1,6 @@
 package com.example.locationpet;
 
 import android.app.AlertDialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,13 +9,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
 import com.example.locationpet.dto.Login;
 import com.example.locationpet.dto.SharedPreferenceHelper;
-
-import org.json.JSONObject;
-
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,19 +84,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void autoLogin() {
-        String token = preferenceHelper.getAccessToken();
+        final String accesToken = preferenceHelper.getAccessToken();
+        final String refreshToken = preferenceHelper.getRefreshToken();
 
-        Login.Response response = new Login.Response(token);
-        Call<Login.Response> call = loginInterface.PostToken(response);
+        Login.TokenRequest tokenRequest = new Login.TokenRequest(accesToken, refreshToken);
+        Call<Login.Response> call = loginInterface.PostToken(tokenRequest);
         call.enqueue(new Callback<Login.Response>() {
             private final String TAG = "AUTOLOGIN";
 
             @Override
             public void onResponse(Call<Login.Response> call, Response<Login.Response> response) {
-                if (token != null) {
+                if (accesToken != null) {
                     //회원정보를 갖고 로그인성공
                     Login.Response jsonResponse = response.body();
-                    Log.d(TAG, "Success = " + jsonResponse.getToken());
+                    Log.d(TAG, "Success = " + jsonResponse.getAccesToken());
                 }
             }
 
