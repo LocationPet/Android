@@ -2,52 +2,21 @@ package com.example.locationpet.dto;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class Register {
 
-    public static class Info {
+    public class info {
         @SerializedName("userNickName")
         private String userNickName;
         @SerializedName("userAge")
-        private long userAge;
-
-
-        public Info(String userNickName, long userAge) {
-            this.userNickName = userNickName;
-            this.userAge = userAge;
-        }
+        private int userAge;
     }
-
-    public static class Location{
-        @SerializedName("streetSIDO")
-        private String streetSIDO;
-        @SerializedName("streetSIGUNGU")
-        private String streetSIGUNGU;
-        @SerializedName("streetEUPMYENDONG")
-        private String streetEUPMYENDONG;
-
-        public Location(String streetSIDO, String streetSIGUNGU, String streetEUPMYENDONG) {
-            this.streetSIDO = streetSIDO;
-            this.streetSIGUNGU = streetSIGUNGU;
-            this.streetEUPMYENDONG = streetEUPMYENDONG;
-        }
-    }
-
-    public static class AnimalOption {
-
+    public class animal_option {
         @SerializedName("animalName")
         private String animalName;
         @SerializedName("animalKind")
         private String animalKind;
         @SerializedName("animalBirth")
-        private long animalBirth;
-
-        public AnimalOption(String animalName, String animalKind, long animalBirth) {
-            this.animalName = animalName;
-            this.animalKind = animalKind;
-            this.animalBirth = animalBirth;
-        }
+        private String animalBirth;
     }
 
     public static class Request {
@@ -55,19 +24,16 @@ public class Register {
         private String userEmail;
         @SerializedName("userPassword")
         private String userPassword;
-        @SerializedName("info")
-        private Info info;
-        @SerializedName("animal")
-        private AnimalOption animalOption;
-        @SerializedName("location")
-        private Location location;
+        @SerializedName("animalName")
+        private String animalName;
+        @SerializedName("animalKind")
+        private String animalKind;
 
-        public Request(String userEmail, String userPassword, Info info, AnimalOption animalOption, Location location) {
+        public Request(String userEmail, String userPassword, String animalName, String animalKind) {
             this.userEmail = userEmail;
             this.userPassword = userPassword;
-            this.info = info;
-            this.animalOption = animalOption;
-            this.location = location;
+            this.animalName = animalName;
+            this.animalKind = animalKind;
         }
     }
 
