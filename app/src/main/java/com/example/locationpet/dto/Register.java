@@ -24,10 +24,16 @@ public class Register {
         private String userEmail;
         @SerializedName("userPassword")
         private String userPassword;
+        @SerializedName("animalName")
+        private String animalName;
+        @SerializedName("animalKind")
+        private String animalKind;
 
-        public Request(String userEmail, String userPassword) {
+        public Request(String userEmail, String userPassword, String animalName, String animalKind) {
             this.userEmail = userEmail;
             this.userPassword = userPassword;
+            this.animalName = animalName;
+            this.animalKind = animalKind;
         }
     }
 

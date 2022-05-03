@@ -23,7 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText create_email, create_pwd, response_pwd;
+    private EditText create_email, create_pwd, response_pwd, create_animalName, create_animalKind;
     private TextView tv_yob, tv_date;
     private Button create_btn;
     private SharedPreferenceHelper preferenceHelper;
@@ -38,9 +38,13 @@ public class RegisterActivity extends AppCompatActivity {
         String year, month, day;
 
         preferenceHelper = new SharedPreferenceHelper(this);
+
         create_email = (EditText) findViewById(R.id.create_email);
         create_pwd = (EditText) findViewById(R.id.create_pwd);
         response_pwd = (EditText) findViewById(R.id.response_pwd);
+        create_animalName = (EditText) findViewById(R.id.create_animalName);
+        create_animalKind = (EditText) findViewById(R.id.create_aniamlKind);
+
         tv_yob = (TextView) findViewById(R.id.tv_yob);
         tv_date = (TextView) findViewById(R.id.tv_date);
         create_btn = (Button) findViewById(R.id.create_btn);
@@ -84,6 +88,8 @@ public class RegisterActivity extends AppCompatActivity {
         final String userEmail = create_email.getText().toString().trim();
         final String userPassword = create_pwd.getText().toString().trim();
         final String re_userPassword = response_pwd.getText().toString().trim();
+        final String animalName = create_animalName.getText().toString().trim();
+        final String animalKind = create_animalKind.getText().toString().trim();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RegisterInterface.LOGIN_URL)
@@ -93,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
 
-        Register.Request request = new Register.Request(userEmail, userPassword);
+        Register.Request request = new Register.Request(userEmail, userPassword, animalName, animalKind);
         Call<Register.Response> call = registerInterface.PostRequest(request);
         call.enqueue(new Callback<Register.Response>() {
             @Override

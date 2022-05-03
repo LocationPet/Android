@@ -33,6 +33,22 @@
         android:paddingBottom="15dp"
         android:hint="비밀번호 확인"/>
 
+    <EditText
+        android:id="@+id/create_animalName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:paddingBottom="15dp"
+        android:hint="반려동물 이름"/>
+
+    <EditText
+        android:id="@+id/create_aniamlKind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="15"
+        android:paddingBottom="15dp"
+        android:hint="반려동물 종류"/>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
