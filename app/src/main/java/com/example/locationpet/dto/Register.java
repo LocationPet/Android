@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class Register {
 
-    public class info {
+    public class Info {
         @SerializedName("userNickName")
         private String userNickName;
         @SerializedName("userAge")
-        private int userAge;
+        private Date userAge;
     }
-    public class animal_option {
+    public class AnimalOption {
         @SerializedName("animalName")
         private String animalName;
         @SerializedName("animalKind")
@@ -24,16 +24,15 @@ public class Register {
         private String userEmail;
         @SerializedName("userPassword")
         private String userPassword;
-        @SerializedName("animalName")
-        private String animalName;
-        @SerializedName("animalKind")
-        private String animalKind;
+        
+        private Info info;
+        private AnimalOption animalOption;
 
-        public Request(String userEmail, String userPassword, String animalName, String animalKind) {
+        public Request(String userEmail, String userPassword, String info, String animalOption) {
             this.userEmail = userEmail;
             this.userPassword = userPassword;
-            this.animalName = animalName;
-            this.animalKind = animalKind;
+            this.Info = info;
+            this.AnimalOption = animalOption;
         }
     }
 
