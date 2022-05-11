@@ -1,6 +1,7 @@
 package com.example.locationpet;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -98,6 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                     //회원정보를 갖고 로그인성공
                     Login.Response jsonResponse = response.body();
                     Log.d(TAG, "Success = " + jsonResponse.getAccesToken());
+                    Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
+                    startActivity(intent);
                 }
             }
 

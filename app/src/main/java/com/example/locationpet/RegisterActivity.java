@@ -15,6 +15,8 @@ import com.example.locationpet.datepicker.Dpicker;
 import com.example.locationpet.dto.Register;
 import com.example.locationpet.dto.SharedPreferenceHelper;
 
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText create_email, create_pwd, response_pwd, create_animalName, create_animalKind;
+    private EditText create_email, create_pwd, response_pwd, create_animalName, create_animalKind, create_nickName;
     private TextView tv_yob, tv_date;
     private Button create_btn;
     private SharedPreferenceHelper preferenceHelper;
@@ -44,10 +46,22 @@ public class RegisterActivity extends AppCompatActivity {
         response_pwd = (EditText) findViewById(R.id.response_pwd);
         create_animalName = (EditText) findViewById(R.id.create_animalName);
         create_animalKind = (EditText) findViewById(R.id.create_aniamlKind);
+        create_nickName = (EditText) findViewById(R.id.create_nickName);
 
         tv_yob = (TextView) findViewById(R.id.tv_yob);
         tv_date = (TextView) findViewById(R.id.tv_date);
         create_btn = (Button) findViewById(R.id.create_btn);
+
+
+        tv_date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(tv_date.isClickable() == true) {
+                    Intent intent = new Intent(getApplicationContext(), Dpicker.class);
+                    startActivityForResult(intent, 1000);
+                }
+            }
+        });
 
         if (Dpicker.check == true) {
             Intent pickerData = getIntent();
@@ -64,18 +78,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
 
-
-
-        tv_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(tv_date.isClickable() == true) {
-                    Intent intent = new Intent(getApplicationContext(), Dpicker.class);
-                    startActivityForResult(intent, 1000);
-                }
-            }
-        });
-
         create_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
         final String userEmail = create_email.getText().toString().trim();
         final String userPassword = create_pwd.getText().toString().trim();
         final String re_userPassword = response_pwd.getText().toString().trim();
+        final String userNickName = create_nickName.getText().toString();
         final String animalName = create_animalName.getText().toString().trim();
         final String animalKind = create_animalKind.getText().toString().trim();
 
@@ -99,7 +102,10 @@ public class RegisterActivity extends AppCompatActivity {
 
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
 
-        Register.Request request = new Register.Request(userEmail, userPassword, animalName, animalKind);
+        Register.AnimalOption animalOption = new Register.AnimalOption(animalName, animalKind, 1652293871245L);
+        Register.Info info = new Register.Info(userNickName, 1652293871245L);
+        Register.Location location = new Register.Location("a","b","c");
+        Register.Request request = new Register.Request(userEmail, userPassword, info, animalOption, location);
         Call<Register.Response> call = registerInterface.PostRequest(request);
         call.enqueue(new Callback<Register.Response>() {
             @Override
@@ -108,10 +114,13 @@ public class RegisterActivity extends AppCompatActivity {
                     Register.Response jsonResponse = response.body();
                     Log.d(TAG, "Success : " + jsonResponse.toString());
                     //버튼 이벤트 여기서 생성해주고 하면 될듯?
+                    //동일한 아이디라면?
                     if (userPassword == re_userPassword) {
                         Toast.makeText(RegisterActivity.this, "비밀번호가 일치합니다.",
                                 Toast.LENGTH_SHORT).show();
                     }
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
                 }
             }
 

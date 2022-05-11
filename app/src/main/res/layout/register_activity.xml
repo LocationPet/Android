@@ -34,6 +34,15 @@
         android:hint="비밀번호 확인"/>
 
     <EditText
+        android:id="@+id/create_nickName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="15"
+        android:paddingBottom="15dp"
+        android:hint="닉네임 입력"/>
+
+    <EditText
         android:id="@+id/create_animalName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btndesign"
+        android:layout_marginTop="100dp"
         android:text="회원가입" />
 
 </LinearLayout>

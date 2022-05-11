@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".LoginActivity" android:label="LoginActivity"/>
         <activity android:name=".RegisterActivity" android:label="RegisterActivity"/>
+        <activity android:name=".EnterActivity" android:label="EnterActivity"/>
     </application>
 
 </manifest>
