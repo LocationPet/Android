@@ -13,4 +13,25 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="mywith">
+
+        <item name="android:textSize">
+            42sp
+        </item>
+
+        <item name="android:textColor">
+            #FDA521
+        </item>
+
+    </style>
+
+    <style name="some_id">
+        <item name="android:textSize">
+            40sp
+        </item>
+        <item name="android:textColor">
+            #FDA521
+        </item>
+    </style>
 </resources>

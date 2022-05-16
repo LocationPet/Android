@@ -7,8 +7,8 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface RegisterInterface {
-//    String LOGIN_URL = "http://3.39.42.187:8080/api/";
-    String LOGIN_URL = "http://192.168.0.8:8080/api/";
+    String LOGIN_URL = "http://3.39.42.187:8080/api/";
+//    String LOGIN_URL = "http://192.168.0.8:8080/api/";
     @POST("auth/signup")
     Call<Register.Response> PostRequest(
             @Body Register.Request request

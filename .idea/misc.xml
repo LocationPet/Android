@@ -3,10 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/btn_ok.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/btndesign.xml" value="0.15833333333333333" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.16576086956521738" />
+        <entry key="app/src/main/res/drawable/btndesign2.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/btnfalse.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/btnlogin.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/btnok.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/btnregister.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/btntrue.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/imgmain1.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/imgmain2.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/textdesign.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/enter_activity.xml" value="0.24094202898550723" />
-        <entry key="app/src/main/res/layout/login_activity.xml" value="0.37555700961543936" />
+        <entry key="app/src/main/res/layout/login_activity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_ctivity.xml" value="0.16576086956521738" />
         <entry key="app/src/main/res/layout/picker.xml" value="0.24592391304347827" />
         <entry key="app/src/main/res/layout/register_activity.xml" value="0.25" />

@@ -74,6 +74,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     Login.Response jsonResponse = response.body();
                     Log.d(TAG, "Success : " + jsonResponse.getUserEmail());
+                    Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
+                    startActivity(intent);
                 }
             }
 

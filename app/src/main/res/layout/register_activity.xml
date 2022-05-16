@@ -4,16 +4,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:background="#E5E5E5"
     android:gravity="center_vertical">
 
-    <EditText
-        android:id="@+id/create_email"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="15"
-        android:paddingBottom="15dp"
-        android:hint="아이디 생성" />
+        android:text="회원가입"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:textColor="#313033"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="반려동물을 위한 커뮤니티 마이윗과 함께해주세요."
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#FDA521"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이메일 인증"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#313033" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/create_email"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/textdesign"
+            android:ems="15"
+            android:hint="이메일 주소를 입력해주세요."
+            android:inputType="textEmailAddress" />
+
+        <Button
+            android:id="@+id/btnCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인증 요청"
+            android:background="@drawable/btnregister"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 설정"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#313033" />
 
     <EditText
         android:id="@+id/create_pwd"
@@ -21,8 +72,17 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="15"
-        android:paddingBottom="15dp"
-        android:hint="비밀번호 생성"/>
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textdesign"
+        android:hint="영문, 숫자를 조합해 8자리 이상으로 설정해주세요."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="비밀번호 확인"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#313033" />
 
     <EditText
         android:id="@+id/response_pwd"
@@ -30,8 +90,17 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword"
         android:ems="15"
-        android:paddingBottom="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textdesign"
         android:hint="비밀번호 확인"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="닉네임 설정"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#313033" />
 
     <EditText
         android:id="@+id/create_nickName"
@@ -39,55 +108,74 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="15"
-        android:paddingBottom="15dp"
-        android:hint="닉네임 입력"/>
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textdesign"
+        android:hint="사용하실 닉네임을 입력해주세요."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="반려동물 이름"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#313033" />
 
     <EditText
         android:id="@+id/create_animalName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
-        android:paddingBottom="15dp"
-        android:hint="반려동물 이름"/>
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textdesign"
+        android:hint="반려동물 이름을 입력해주세요."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="반려동물 종류"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:textColor="#313033" />
 
     <EditText
         android:id="@+id/create_aniamlKind"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="15"
-        android:paddingBottom="15dp"
-        android:hint="반려동물 종류"/>
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/textdesign"
+        android:hint="반려동물의 종을 입력해주세요."/>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            android:id="@+id/tv_yob"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="출생년도"
-            android:textSize="30dp"
-            android:layout_marginLeft="15dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_yob"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="출생년도"-->
+<!--            android:textSize="30dp"-->
+<!--            android:layout_marginLeft="15dp"/>-->
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="출생년도를 지정해주세요."
-            android:textSize="15dp"
-            android:layout_marginLeft="15dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="출생년도를 지정해주세요."-->
+<!--            android:textSize="15dp"-->
+<!--            android:layout_marginLeft="15dp"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <Button
         android:id="@+id/create_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/btndesign"
-        android:layout_marginTop="100dp"
+        android:background="@drawable/btnregister"
+        android:layout_marginTop="10dp"
         android:text="회원가입" />
 
 </LinearLayout>
