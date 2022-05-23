@@ -15,8 +15,6 @@ import com.example.locationpet.datepicker.Dpicker;
 import com.example.locationpet.dto.Register;
 import com.example.locationpet.dto.SharedPreferenceHelper;
 
-import java.util.Date;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,8 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
         create_animalKind = (EditText) findViewById(R.id.create_aniamlKind);
         create_nickName = (EditText) findViewById(R.id.create_nickName);
 
-        tv_yob = (TextView) findViewById(R.id.tv_yob);
-        tv_date = (TextView) findViewById(R.id.tv_date);
+//        tv_yob = (TextView) findViewById(R.id.tv_yob);
+//        tv_date = (TextView) findViewById(R.id.tv_date);
         create_btn = (Button) findViewById(R.id.create_btn);
 
 
