@@ -16,5 +16,6 @@ public interface CertifyInterface {
     @GET("auth/check/nickname")
     Call<Register.Response> GetRequestName(
             @Query("userNickName") String userNickName
+
     );
 }
