@@ -58,6 +58,10 @@ public class Register {
         @SerializedName("location")
         private Location location;
 
+        public Request(String userEmail) {
+            this.userEmail = userEmail;
+        }
+
         public Request(String userEmail, String userPassword, Info info, AnimalOption animalOption, Location location) {
             this.userEmail = userEmail;
             this.userPassword = userPassword;

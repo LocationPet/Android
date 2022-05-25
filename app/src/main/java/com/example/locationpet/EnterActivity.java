@@ -4,9 +4,14 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.locationpet.adapter.RecyclerAdapter;
 import com.example.locationpet.dto.Recycler;
 import com.example.locationpet.dto.SharedPreferenceHelper;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,6 +25,10 @@ public class EnterActivity extends AppCompatActivity {
     Recycler.Response itemList;
     SharedPreferenceHelper preferenceHelper;
 
+    private RecyclerAdapter adapter;
+
+    RecyclerView recyclerView;
+
     final String TAG = "ENTERACTIVITY";
 
     @Override
@@ -29,6 +38,10 @@ public class EnterActivity extends AppCompatActivity {
 
         preferenceHelper = new SharedPreferenceHelper(this);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RecyclerInterface.RECYCLER_URL)
@@ -42,9 +55,14 @@ public class EnterActivity extends AppCompatActivity {
         call.enqueue(new Callback<Recycler.Response>() {
             @Override
             public void onResponse(Call<Recycler.Response> call, Response<Recycler.Response> response) {
-                itemList = response.body();
+                if (response.isSuccessful() && response.body() != null) {
+                    itemList = response.body();
 
-                Log.d(TAG, itemList.toString());
+                    Log.d(TAG, itemList.toString());
+
+                    adapter = new RecyclerAdapter(getApplicationContext(), (List<Recycler.Response>) itemList);
+                    recyclerView.setAdapter(adapter);
+                }
             }
 
             @Override

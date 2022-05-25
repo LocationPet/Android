@@ -18,8 +18,7 @@
     <path
         android:pathData="M4 4H40.0006V44H4V4Z"
         android:strokeWidth="8"
-        android:strokeCap="round"
-        android:strokeJoin="round"
+
         android:strokeColor="#FDA521"
         />
 

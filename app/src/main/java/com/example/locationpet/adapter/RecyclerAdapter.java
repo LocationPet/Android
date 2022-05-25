@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                 .skipMemoryCache(true)
                 .circleCrop()
                 .skipMemoryCache(true)
-                .error(R.drawable.btnregister)
+                .error(R.drawable.textdesign)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.postImg);
     }

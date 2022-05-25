@@ -25,10 +25,16 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RegisterActivity extends AppCompatActivity {
     private EditText create_email, create_pwd, response_pwd, create_animalName, create_animalKind, create_nickName;
     private TextView tv_yob, tv_date;
-    private Button create_btn;
+    private Button create_btn, check_btn;
     private SharedPreferenceHelper preferenceHelper;
 
     final String TAG = "REGISTERACTIVITY";
+
+    Retrofit retrofit = new Retrofit.Builder()
+            .baseUrl(RegisterInterface.REGISTER_URL)
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +55,18 @@ public class RegisterActivity extends AppCompatActivity {
 //        tv_yob = (TextView) findViewById(R.id.tv_yob);
 //        tv_date = (TextView) findViewById(R.id.tv_date);
         create_btn = (Button) findViewById(R.id.create_btn);
+        check_btn = (Button) findViewById(R.id.check_btn);
 
 
-        tv_date.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(tv_date.isClickable() == true) {
-                    Intent intent = new Intent(getApplicationContext(), Dpicker.class);
-                    startActivityForResult(intent, 1000);
-                }
-            }
-        });
+//        tv_date.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(tv_date.isClickable() == true) {
+//                    Intent intent = new Intent(getApplicationContext(), Dpicker.class);
+//                    startActivityForResult(intent, 1000);
+//                }
+//            }
+//        });
 
         if (Dpicker.check == true) {
             Intent pickerData = getIntent();
@@ -76,6 +83,13 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
 
+        check_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                responseMail();
+            }
+        });
+
         create_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,12 +105,6 @@ public class RegisterActivity extends AppCompatActivity {
         final String userNickName = create_nickName.getText().toString();
         final String animalName = create_animalName.getText().toString().trim();
         final String animalKind = create_animalKind.getText().toString().trim();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(RegisterInterface.LOGIN_URL)
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
         RegisterInterface registerInterface = retrofit.create(RegisterInterface.class);
 
@@ -127,6 +135,29 @@ public class RegisterActivity extends AppCompatActivity {
                 Log.e(TAG, "에러 : " + t.getMessage());
             }
         });
+    }
 
+    private void responseMail() {
+        final String userEmail = create_email.getText().toString().trim();
+        boolean mail_check = false;
+
+        CertifyInterface certifyInterface = retrofit.create(CertifyInterface.class);
+        certifyInterface.GetRequestEmail(userEmail);
+        Register.Request request = new Register.Request(userEmail);
+        Call<Register.Response> call = certifyInterface.GetRequestEmail(userEmail);
+        call.enqueue(new Callback<Register.Response>() {
+            @Override
+            public void onResponse(Call<Register.Response> call, Response<Register.Response> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Register.Response jsonResponse = response.body();
+                    Log.d(TAG, "Success : " + jsonResponse.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Register.Response> call, Throwable t) {
+                Log.e(TAG, "에러 : " + t.getMessage());
+            }
+        });
     }
 }

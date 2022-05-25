@@ -17,5 +17,5 @@
         android:text="저장"
         android:layout_gravity="center"
         android:layout_marginTop="300dp"
-        android:background="@drawable/btndesign"></Button>
+        android:background="@drawable/btntrue"></Button>
 </LinearLayout>

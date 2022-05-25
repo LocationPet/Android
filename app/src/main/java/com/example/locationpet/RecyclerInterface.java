@@ -7,7 +7,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 
 public interface RecyclerInterface {
-    String RECYCLER_URL = "http://112.153.247.72/api/";
+    String RECYCLER_URL = "http://112.153.247.72:8080/api/";
 
     @GET("post/new-post")
     Call<Recycler.Response> GetRequest(

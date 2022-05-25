@@ -51,7 +51,7 @@
             android:inputType="textEmailAddress" />
 
         <Button
-            android:id="@+id/btnCheck"
+            android:id="@+id/check_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="인증 요청"
