@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.locationpet.datepicker.Dpicker;
 import com.example.locationpet.dto.Register;
 import com.example.locationpet.dto.SharedPreferenceHelper;
 
@@ -25,7 +24,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RegisterActivity extends AppCompatActivity {
     private EditText create_email, create_pwd, response_pwd, create_animalName, create_animalKind, create_nickName;
     private TextView tv_yob, tv_date;
-    private Button create_btn, check_btn;
+    private Button create_btn, confirmMail;
     private SharedPreferenceHelper preferenceHelper;
 
     final String TAG = "REGISTERACTIVITY";
@@ -55,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 //        tv_yob = (TextView) findViewById(R.id.tv_yob);
 //        tv_date = (TextView) findViewById(R.id.tv_date);
         create_btn = (Button) findViewById(R.id.create_btn);
-        check_btn = (Button) findViewById(R.id.check_btn);
+        confirmMail = (Button) findViewById(R.id.confirmMail);
 
 
 //        tv_date.setOnClickListener(new View.OnClickListener() {
@@ -68,22 +67,22 @@ public class RegisterActivity extends AppCompatActivity {
 //            }
 //        });
 
-        if (Dpicker.check == true) {
-            Intent pickerData = getIntent();
-            if (pickerData.getExtras().getString("yy") != null &&
-                    pickerData.getExtras().getString("mm") != null &&
-                    pickerData.getExtras().getString("dd") != null) {
-                year = pickerData.getExtras().getString("yy");
-                month = pickerData.getExtras().getString("mm");
-                day = pickerData.getExtras().getString("dd");
-                tv_date.setText(year + "년 " + month + "월 " + day + "일");
-            } else {
-                Toast.makeText(RegisterActivity.this, "생년월일을 다시 입력해주세요.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if (Dpicker.check == true) {
+//            Intent pickerData = getIntent();
+//            if (pickerData.getExtras().getString("yy") != null &&
+//                    pickerData.getExtras().getString("mm") != null &&
+//                    pickerData.getExtras().getString("dd") != null) {
+//                year = pickerData.getExtras().getString("yy");
+//                month = pickerData.getExtras().getString("mm");
+//                day = pickerData.getExtras().getString("dd");
+//                tv_date.setText(year + "년 " + month + "월 " + day + "일");
+//            } else {
+//                Toast.makeText(RegisterActivity.this, "생년월일을 다시 입력해주세요.",
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
-        check_btn.setOnClickListener(new View.OnClickListener() {
+        confirmMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 responseMail();
@@ -143,19 +142,18 @@ public class RegisterActivity extends AppCompatActivity {
 
         CertifyInterface certifyInterface = retrofit.create(CertifyInterface.class);
         certifyInterface.GetRequestEmail(userEmail);
-        Register.Request request = new Register.Request(userEmail);
-        Call<Register.Response> call = certifyInterface.GetRequestEmail(userEmail);
-        call.enqueue(new Callback<Register.Response>() {
+        Call<String> call = certifyInterface.GetRequestEmail(userEmail);
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Register.Response> call, Response<Register.Response> response) {
+            public void onResponse(Call<String> call, Response<String> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    Register.Response jsonResponse = response.body();
-                    Log.d(TAG, "Success : " + jsonResponse.toString());
+                    String jsonResponse = response.body();
+                    Log.d(TAG, "Success : " + jsonResponse);
                 }
             }
 
             @Override
-            public void onFailure(Call<Register.Response> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 Log.e(TAG, "에러 : " + t.getMessage());
             }
         });

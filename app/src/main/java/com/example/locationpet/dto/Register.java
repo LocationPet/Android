@@ -53,7 +53,7 @@ public class Register {
         private String userPassword;
         @SerializedName("Info")
         private Info info;
-        @SerializedName("animalname")
+        @SerializedName("animalOption")
         private AnimalOption animalOption;
         @SerializedName("location")
         private Location location;

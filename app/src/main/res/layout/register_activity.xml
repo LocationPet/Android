@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingLeft="24dp"
     android:paddingRight="24dp"
-    android:background="#E5E5E5"
+    android:background="#FFFFFF"
     android:gravity="center_vertical">
 
     <TextView
@@ -51,7 +51,7 @@
             android:inputType="textEmailAddress" />
 
         <Button
-            android:id="@+id/check_btn"
+            android:id="@+id/confirmMail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="인증 요청"
@@ -176,6 +176,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/btnregister"
         android:layout_marginTop="10dp"
+        android:state_pressed="true"
         android:text="회원가입" />
 
 </LinearLayout>

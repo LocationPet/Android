@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:paddingLeft="40dp"
-    android:background="#E5E5E5"
+    android:background="#FFFFFF"
     android:orientation="vertical">
 
     <TextView
@@ -66,6 +66,7 @@
         android:ems="10"
         android:text="로그인"
         android:textSize="15dp"
+        android:state_pressed="true"
         android:background="@drawable/btnlogin"/>
 
 

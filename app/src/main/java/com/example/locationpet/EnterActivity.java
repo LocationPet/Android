@@ -26,8 +26,9 @@ public class EnterActivity extends AppCompatActivity {
     SharedPreferenceHelper preferenceHelper;
 
     private RecyclerAdapter adapter;
-
     RecyclerView recyclerView;
+
+
 
     final String TAG = "ENTERACTIVITY";
 
@@ -51,7 +52,7 @@ public class EnterActivity extends AppCompatActivity {
 
         RecyclerInterface recyclerInterface = retrofit.create(RecyclerInterface.class);
         Recycler.Request request = new Recycler.Request(null);
-        Call<Recycler.Response> call = recyclerInterface.GetRequest(request);
+        Call<Recycler.Response> call = recyclerInterface.GetRequest();
         call.enqueue(new Callback<Recycler.Response>() {
             @Override
             public void onResponse(Call<Recycler.Response> call, Response<Recycler.Response> response) {
