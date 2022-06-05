@@ -26,14 +26,18 @@ import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class HPTActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener,
-    MapView.MapViewEventListener{
+public class HPTActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
+
 
     private String TAG = "HPTACTIVITY";
 
@@ -49,7 +53,6 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -73,17 +76,32 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
 
         HospitalLocationInterface hospitalLocationInterface = retrofit.create(HospitalLocationInterface.class);
 
-        Call<>
-
 
         // 트래킹모드는 3가지를 지원하는데 TrakingModeOff는 현위치 트래킹 모드 및 나침반 모드 모두 꺼진다.
         // TrakingModeOnWithoutHeading 모드는 현위치 트래킹 모드가 켜지고 위치에 따라 지도 중심이 이동되고, 나침반 모드는 꺼진다.
         if (!checkLocationServiceStatus()) {
             showDialogForLocationServiceSetting();
         } else {
-//            mapViewContainer.removeAllViews();
+
         }
         mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+
+        Call<List<HospitalLocation.Response>> call = hospitalLocationInterface.HospitalLocationRequest(127.1489, 35.8170, 1000);
+        call.enqueue(new Callback<List<HospitalLocation.Response>>() {
+            @Override
+            public void onResponse(Call<List<HospitalLocation.Response>> call, Response<List<HospitalLocation.Response>> response) {
+                List<HospitalLocation.Response> hospitalData = new ArrayList<>(response.body());
+                for(HospitalLocation.Response res : hospitalData){
+                    Log.d(TAG, String.valueOf(res.getHospitalLat()) + " + " + res.getHospitalLot());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<HospitalLocation.Response>> call, Throwable t) {
+
+            }
+        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -132,7 +150,7 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
         // 2. 이미 퍼미션을 가지고 있다면 위치 값을 가져올 수 있다. ( 안드로이도 6.0 이하는 런타임 퍼미션이 필요없어 허용된 것으로 인식하니 주의 ! )
-        if(hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
         } else { // 퍼미션 요청을 거부한적 있다면 퍼미션 요청이 필요하다
             // 3. 사용자가 퍼미션 거부를 한 적이 있다면 요청을 진행하기전에 설명을 해준다.
             Toast.makeText(HPTActivity.this, "정보를 가져오려면 위치 정보 접근 권한이 필요합니다.",
