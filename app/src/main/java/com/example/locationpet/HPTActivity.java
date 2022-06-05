@@ -93,8 +93,13 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
                 List<HospitalLocation.Response> hospitalData = new ArrayList<>(response.body());
                 for(HospitalLocation.Response res : hospitalData){
                     Log.d(TAG, String.valueOf(res.getHospitalLat()) + " + " + res.getHospitalLot());
-
+                    MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(res.getHospitalLat(), res.getHospitalLot());
+                    marker.setItemName(res.getHospitalName());
+                    marker.setMapPoint(mapPoint);
                 }
+                marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+                marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                mapView.addPOIItem(marker);
             }
 
             @Override
