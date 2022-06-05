@@ -23,8 +23,7 @@ import androidx.core.content.ContextCompat;
 import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
-public class HPTActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener,
-    MapView.MapViewEventListener{
+public class HPTActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
 
     private String TAG = "HPTACTIVITY";
 
@@ -40,7 +39,6 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
-
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -101,9 +99,9 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
         if (!checkLocationServiceStatus()) {
             showDialogForLocationServiceSetting();
         } else {
-            mapViewContainer.removeAllViews();
+           // mapViewContainer.removeAllViews();
         }
-//        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -152,7 +150,7 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
         // 2. 이미 퍼미션을 가지고 있다면 위치 값을 가져올 수 있다. ( 안드로이도 6.0 이하는 런타임 퍼미션이 필요없어 허용된 것으로 인식하니 주의 ! )
-        if(hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
+        if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED) {
         } else { // 퍼미션 요청을 거부한적 있다면 퍼미션 요청이 필요하다
             // 3. 사용자가 퍼미션 거부를 한 적이 있다면 요청을 진행하기전에 설명을 해준다.
             Toast.makeText(HPTActivity.this, "정보를 가져오려면 위치 정보 접근 권한이 필요합니다.",
