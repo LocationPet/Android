@@ -28,12 +28,20 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
 
     private String TAG = "HPTACTIVITY";
 
+//    Retrofit retrofit = new Retrofit.Builder()
+//            .baseUrl(HospitalLocationInterface.HOSPITAL_URL)
+//            .addConverterFactory(ScalarsConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build();
+
     private static double currentLat;
     private static double currentLng;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSONS_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION};
+
+
 
     @RequiresApi(api = Build.VERSION_CODES.P)
     @Override
@@ -51,6 +59,43 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
         mapView.setMapViewEventListener(this);
         mapView.setCurrentLocationEventListener(this);
 
+        // 마커 찍기
+//        MapPOIItem marker = new MapPOIItem();
+//
+//        HospitalLocationInterface hospitalLocationInterface = retrofit.create(HospitalLocationInterface.class);
+//
+//        Call<HospitalLocation.Response> call = hospitalLocationInterface.HospitalLocationRequest(1000, currentLat, currentLng);
+//        call.enqueue(new Callback<HospitalLocation.Response>() {
+//            @Override
+//            public void onResponse(Call<HospitalLocation.Response> call, Response<HospitalLocation.Response> response) {
+//                if (response.isSuccessful() && response.body() != null) {
+//                    List<HospitalLocation.Response> dataArr = (List<HospitalLocation.Response>) response.body();
+//                    // 배열 생성하고 리턴값에 맞게 만든 함수에 대입 후 마커 찍기
+//                    ArrayList<MapPOIItem> markerArr = new ArrayList<MapPOIItem>();
+//                    for (hospitalDataList : dataArr) {
+//                        MapPOIItem marker = new MapPOIItem();
+//                        marker.setMapPoint(MapPoint.mapPointWithGeoCoord(hospitalLat, hospitalLot));
+//                        // 클릭했을 때, 나오는 값
+//                        marker.setItemName(hospitalName);
+//                        marker.setTag(0);
+//                        markerArr.add(marker);
+//                    }
+//                    // 모든 마커를 추가
+//                    mapView.addPOIItem(markerArr.toArray(new MapPOIItem[markerArr.size()]));
+//                    // 클릭 전 마크 색상 파란색
+//                    marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+//                    // 클릭 후 마크 색상 빨간색
+//                    marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<HospitalLocation.Response> call, Throwable t) {
+//                Log.d(TAG, t.getMessage());
+//            }
+//        });
+
+
         // 트래킹모드는 3가지를 지원하는데 TrakingModeOff는 현위치 트래킹 모드 및 나침반 모드 모두 꺼진다.
         // TrakingModeOnWithoutHeading 모드는 현위치 트래킹 모드가 켜지고 위치에 따라 지도 중심이 이동되고, 나침반 모드는 꺼진다.
         if (!checkLocationServiceStatus()) {
@@ -58,7 +103,7 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
         } else {
             mapViewContainer.removeAllViews();
         }
-        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
+//        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)

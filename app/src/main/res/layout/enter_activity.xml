@@ -142,37 +142,34 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/main_home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_home"
-            android:scaleType="fitCenter"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/main_home"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btn_home"/>-->
 
-        <Button
-            android:id="@+id/main_peed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_new"
-            android:scaleType="fitCenter"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/main_newPost"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btn_new"/>-->
 
-        <Button
-            android:id="@+id/main_findHPT"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_hpt"
-            android:scaleType="fitCenter"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/main_hpt"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btn_hpt"/>-->
 
-        <Button
-            android:id="@+id/main_myPage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/btn_mypage"
-            android:scaleType="fitCenter"/>
+<!--        <ImageButton-->
+<!--            android:id="@+id/main_myPage"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/btn_mypage"/>-->
+
     </LinearLayout>
 
 </LinearLayout>

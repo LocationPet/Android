@@ -14,7 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LocationPet">
+        android:theme="@style/Theme.LocationPet"
+        tools:ignore="UnusedAttribute">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -29,7 +30,7 @@
         <activity android:name=".EnterActivity" android:label="EnterActivity"/>
         <activity android:name=".HPTActivity" android:label="HPTActivity"/>
 
-        <meta-data android:name="com.kakao.sdk.AppKey" android:value="629f533e9c5dd8b228d1c8018c54c517"/>
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="7a446a16dab2f82c2df3b4bf9be82b4e"/>
 
     </application>
 
