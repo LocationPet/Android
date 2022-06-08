@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="#F8F8F8"
     android:orientation="vertical">
 
     <LinearLayout
@@ -12,14 +12,10 @@
         android:gravity="center_vertical"
         android:background="#FDF8F0">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <ImageButton
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="마이윗"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:textColor="#FDA521"
-            android:layout_marginLeft="15dp" />
+            android:background="@drawable/mywith2"/>
 
         <!-- 검색 아이콘 추가 -->
 
@@ -37,7 +33,7 @@
             android:id="@+id/main_animalImg"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:src="@drawable/imgmain1"
+            android:background="@drawable/cat"
             android:layout_marginLeft="24dp" />
 
         <LinearLayout
@@ -50,7 +46,7 @@
                 android:id="@+id/main_animalNickName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="동글이"
+                android:text="샤넬이"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="#000000" />
@@ -78,50 +74,35 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/main_travel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="추천 산책로"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="#000000"/>
+                android:background="@drawable/s_hotwalk"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/main_newHPT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="새로운 동물병원"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="#000000"/>
+                android:background="@drawable/s_newhpt"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/main_hotPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="인기이야기"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="#000000"/>
+                android:background="@drawable/s_hotpost"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/main_recentPost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="최근이야기"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="#000000"/>
+                android:background="@drawable/s_recentpost"/>
 
-            <Button
-                android:id="@+id/main_neighborHPT"
+            <ImageButton
+                android:id="@+id/main_hotHPT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="주변 동물병원"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="#000000"/>
+                android:background="@drawable/s_hothpt"/>
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -140,35 +121,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginBottom="25dp">
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/main_home"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/btn_home"/>-->
+        <ImageButton
+            android:id="@+id/main_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/s_home"/>
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/main_newPost"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/btn_new"/>-->
+        <ImageButton
+            android:id="@+id/main_newPost"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/s_post"/>
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/main_hpt"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/btn_hpt"/>-->
+        <ImageButton
+            android:id="@+id/main_hpt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/s_hpt"/>
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/main_myPage"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:background="@drawable/btn_mypage"/>-->
+        <ImageButton
+            android:id="@+id/main_myPage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/s_mypage"/>
 
     </LinearLayout>
 

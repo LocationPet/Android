@@ -1,7 +1,12 @@
 package com.example.locationpet;
 
+import static com.example.locationpet.HPTActivity.markerFlag;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,7 +33,7 @@ public class EnterActivity extends AppCompatActivity {
     private RecyclerAdapter adapter;
     RecyclerView recyclerView;
 
-
+    ImageButton main_home, main_newPost, main_hpt, main_myPage;
 
     final String TAG = "ENTERACTIVITY";
 
@@ -38,6 +43,11 @@ public class EnterActivity extends AppCompatActivity {
         setContentView(R.layout.enter_activity);
 
         preferenceHelper = new SharedPreferenceHelper(this);
+
+        main_home = (ImageButton) findViewById(R.id.main_home);
+        main_newPost = (ImageButton) findViewById(R.id.main_newPost);
+        main_hpt = (ImageButton) findViewById(R.id.main_hpt);
+        main_myPage = (ImageButton) findViewById(R.id.main_myPage);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
 
@@ -69,6 +79,17 @@ public class EnterActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Recycler.Response> call, Throwable t) {
                 Log.d(TAG, t.getMessage());
+            }
+        });
+
+        main_hpt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (markerFlag) {
+                    markerFlag = false;
+                }
+                Intent intent = new Intent(getApplicationContext(), HPTActivity.class);
+                startActivity(intent);
             }
         });
     }

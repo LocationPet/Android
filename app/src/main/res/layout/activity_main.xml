@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:layout_weight="1"
-    android:background="#FFFFFF"
+    android:background="#F8F8F8"
     android:orientation="vertical">
 
 
@@ -19,7 +19,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/mainimg"
+            android:background="@drawable/mywith"
             android:layout_marginTop="100dp"/>
 
     </LinearLayout>

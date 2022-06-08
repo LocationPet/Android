@@ -36,10 +36,12 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class HPTActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener {
+public class HPTActivity extends AppCompatActivity implements MapView.CurrentLocationEventListener, MapView.MapViewEventListener, MapView.POIItemEventListener {
 
 
     private String TAG = "HPTACTIVITY";
+
+    public static boolean markerFlag = false;
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(HospitalLocationInterface.HOSPITAL_URL)
@@ -71,12 +73,6 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
         mapView.setMapViewEventListener(this);
         mapView.setCurrentLocationEventListener(this);
 
-        // 마커 찍기
-        MapPOIItem marker = new MapPOIItem();
-
-        HospitalLocationInterface hospitalLocationInterface = retrofit.create(HospitalLocationInterface.class);
-
-
         // 트래킹모드는 3가지를 지원하는데 TrakingModeOff는 현위치 트래킹 모드 및 나침반 모드 모두 꺼진다.
         // TrakingModeOnWithoutHeading 모드는 현위치 트래킹 모드가 켜지고 위치에 따라 지도 중심이 이동되고, 나침반 모드는 꺼진다.
         if (!checkLocationServiceStatus()) {
@@ -86,27 +82,7 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
         }
         mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithHeading);
 
-        Call<List<HospitalLocation.Response>> call = hospitalLocationInterface.HospitalLocationRequest(127.1489, 35.8170, 1000);
-        call.enqueue(new Callback<List<HospitalLocation.Response>>() {
-            @Override
-            public void onResponse(Call<List<HospitalLocation.Response>> call, Response<List<HospitalLocation.Response>> response) {
-                List<HospitalLocation.Response> hospitalData = new ArrayList<>(response.body());
-                for(HospitalLocation.Response res : hospitalData){
-                    Log.d(TAG, String.valueOf(res.getHospitalLat()) + " + " + res.getHospitalLot());
-                    MapPoint mapPoint = MapPoint.mapPointWithGeoCoord(res.getHospitalLat(), res.getHospitalLot());
-                    marker.setItemName(res.getHospitalName());
-                    marker.setMapPoint(mapPoint);
-                }
-                marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
-                marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
-                mapView.addPOIItem(marker);
-            }
 
-            @Override
-            public void onFailure(Call<List<HospitalLocation.Response>> call, Throwable t) {
-
-            }
-        });
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -216,6 +192,37 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
         currentLng = mapPointGeo.longitude;
         Log.i(TAG, String.format("MapView onCurrentLocationUpdate (%f,%f) accuracy(%f)",
                 mapPointGeo.latitude, mapPointGeo.longitude, accuracyInMeters));
+
+        if(!markerFlag){
+            HospitalLocationInterface hospitalLocationInterface = retrofit.create(HospitalLocationInterface.class);
+
+            Call<List<HospitalLocation.Response>> call = hospitalLocationInterface.HospitalLocationRequest(currentLng, currentLat, 1000);
+            call.enqueue(new Callback<List<HospitalLocation.Response>>() {
+                @Override
+                public void onResponse(Call<List<HospitalLocation.Response>> call, Response<List<HospitalLocation.Response>> response) {
+                    List<HospitalLocation.Response> hospitalData = new ArrayList<>(response.body());
+                    for(HospitalLocation.Response res : hospitalData){
+                        Log.d(TAG, String.valueOf(res.getHospitalLat()) + " + " + res.getHospitalLot());
+                        // 마커 찍기
+                        MapPOIItem marker = new MapPOIItem();
+                        MapPoint mapPoint = MapPoint.mapPointWithGeoCoord( res.getHospitalLat(), res.getHospitalLot());
+                        marker.setItemName(res.getHospitalName());
+                        marker.setTag(0);
+                        marker.setMapPoint(mapPoint);
+                        marker.setMarkerType(MapPOIItem.MarkerType.BluePin);
+                        marker.setSelectedMarkerType(MapPOIItem.MarkerType.RedPin);
+                        mapView.addPOIItem(marker);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<List<HospitalLocation.Response>> call, Throwable t) {
+
+                }
+            });
+
+            markerFlag = true;
+        }
     }
 
     @Override
@@ -275,6 +282,26 @@ public class HPTActivity extends AppCompatActivity implements MapView.CurrentLoc
 
     @Override
     public void onMapViewMoveFinished(MapView mapView, MapPoint mapPoint) {
+
+    }
+
+    @Override
+    public void onPOIItemSelected(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem) {
+
+    }
+
+    @Override
+    public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
+
+    }
+
+    @Override
+    public void onDraggablePOIItemMoved(MapView mapView, MapPOIItem mapPOIItem, MapPoint mapPoint) {
 
     }
 }

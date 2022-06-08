@@ -57,9 +57,9 @@ public class HospitalLocation {
         private String hospitalAddress;
         @SerializedName("hospitalTime")
         private String hospitalTime;
-        @SerializedName("hosptialLat")
+        @SerializedName("hospitalLat")
         private double hospitalLat;
-        @SerializedName("hosptialLot")
+        @SerializedName("hospitalLot")
         private double hospitalLot;
         @SerializedName("type")
         private String type;
@@ -76,6 +76,22 @@ public class HospitalLocation {
 
         public String getHospitalName() {
             return hospitalName;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getHospitalAddress() {
+            return hospitalAddress;
+        }
+
+        public String getHospitalTime() {
+            return hospitalTime;
+        }
+
+        public String getType() {
+            return type;
         }
 
         public double getHospitalLat() {

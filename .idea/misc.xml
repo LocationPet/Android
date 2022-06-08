@@ -13,11 +13,21 @@
         <entry key="app/src/main/res/drawable/btnok.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/btnregister.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/btntrue.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/d_hothpt.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/imgmain1.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/imgmain2.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_home.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_hothpt.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_hotpost.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_hotwalk.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_hpt.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_mypage.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_newhpt.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_post.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/drawable/s_recentpost.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/drawable/some_id.xml" value="0.1935185185185185" />
         <entry key="app/src/main/res/drawable/textdesign.xml" value="0.21510416666666668" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.10496657675276215" />
         <entry key="app/src/main/res/layout/enter_activity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_activity.xml" value="0.25" />
         <entry key="app/src/main/res/layout/login_ctivity.xml" value="0.16576086956521738" />
