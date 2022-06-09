@@ -72,8 +72,8 @@ public class EnterActivity extends AppCompatActivity {
                 for (Recycler.Response res : recyclerData) {
 
                     dataList.add(res);
-
                 }
+                adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
 
             @Override
@@ -83,6 +83,7 @@ public class EnterActivity extends AppCompatActivity {
         });
 
         adapter = new RecyclerAdapter(dataList, this);
+        recyclerView.setAdapter(adapter);
 
 
 

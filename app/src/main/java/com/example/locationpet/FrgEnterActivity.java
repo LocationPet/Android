@@ -43,7 +43,7 @@ public class FrgEnterActivity extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.enter_activity2, container, false);
+        View view = inflater.inflate(R.layout.enter_activity, container, false);
 
         main_home = (ImageButton) view.findViewById(R.id.main_home);
         main_newPost = (ImageButton) view.findViewById(R.id.main_newPost);
@@ -74,6 +74,7 @@ public class FrgEnterActivity extends Fragment {
                     dataList.add(res);
 
                 }
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -82,7 +83,8 @@ public class FrgEnterActivity extends Fragment {
             }
         });
 
-        adapter = new RecyclerAdapter(dataList, getContext());
+        adapter = new RecyclerAdapter(dataList, getContext());;
+        recyclerView.setAdapter(adapter);
 
         main_home.setOnClickListener(new View.OnClickListener() {
             @Override
