@@ -2,13 +2,12 @@ package com.example.locationpet;
 
 import static com.example.locationpet.HPTActivity.markerFlag;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +15,7 @@ import com.example.locationpet.adapter.RecyclerAdapter;
 import com.example.locationpet.dto.Recycler;
 import com.example.locationpet.dto.SharedPreferenceHelper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -27,11 +27,12 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class EnterActivity extends AppCompatActivity {
 
-    Recycler.Response itemList;
     SharedPreferenceHelper preferenceHelper;
 
-    private RecyclerAdapter adapter;
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Recycler.Response> dataList;
 
     ImageButton main_home, main_newPost, main_hpt, main_myPage;
 
@@ -50,9 +51,10 @@ public class EnterActivity extends AppCompatActivity {
         main_myPage = (ImageButton) findViewById(R.id.main_myPage);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setHasFixedSize(true); // 리사이클러뷰 성능 강화
+        layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+        dataList = new ArrayList<>();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(RecyclerInterface.RECYCLER_URL)
@@ -61,24 +63,40 @@ public class EnterActivity extends AppCompatActivity {
                 .build();
 
         RecyclerInterface recyclerInterface = retrofit.create(RecyclerInterface.class);
-        Recycler.Request request = new Recycler.Request(null);
-        Call<Recycler.Response> call = recyclerInterface.GetRequest();
-        call.enqueue(new Callback<Recycler.Response>() {
+        Call<List<Recycler.Response>> call = recyclerInterface.GetRequest();
+        call.enqueue(new Callback<List<Recycler.Response>>() {
             @Override
-            public void onResponse(Call<Recycler.Response> call, Response<Recycler.Response> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    itemList = response.body();
+            public void onResponse(Call<List<Recycler.Response>> call, Response<List<Recycler.Response>> response) {
+                dataList.clear(); // 기존 배열이 존재하지 않게 초기화
+                List<Recycler.Response> recyclerData = new ArrayList<>(response.body());
+                for (Recycler.Response res : recyclerData) {
+                    String create_at = res.getCreate_at();
+                    String post_Desc = res.getPostDesc();
+                    String postImage = res.getPostImage();
+                    long postId = res.getPostId();
+                    long userUid = res.getUserUid();
+                    int postComment = res.getPostComment();
+                    int postLike = res.getPostLike();
 
-                    Log.d(TAG, itemList.toString());
+                    dataList.add(create_at);
 
-                    adapter = new RecyclerAdapter(getApplicationContext(), (List<Recycler.Response>) itemList);
-                    recyclerView.setAdapter(adapter);
                 }
             }
 
             @Override
-            public void onFailure(Call<Recycler.Response> call, Throwable t) {
-                Log.d(TAG, t.getMessage());
+            public void onFailure(Call<List<Recycler.Response>> call, Throwable t) {
+
+            }
+        });
+
+        adapter = new RecyclerAdapter(dataList, this);
+
+
+
+        main_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTransaction(v);
             }
         });
 
@@ -88,9 +106,41 @@ public class EnterActivity extends AppCompatActivity {
                 if (markerFlag) {
                     markerFlag = false;
                 }
-                Intent intent = new Intent(getApplicationContext(), HPTActivity.class);
-                startActivity(intent);
+                startTransaction(v);
             }
         });
+    }
+
+    private void startTransaction(View view) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        switch (view.getId()) {
+            case R.id.main_home:
+                FrgEnterActivity frgEnterActivity = new FrgEnterActivity();
+                transaction.replace(R.id.tapFrame, frgEnterActivity);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+
+            case R.id.main_newPost:
+                FrgNewPost frgNewPost = new FrgNewPost();
+                transaction.replace(R.id.tapFrame, frgNewPost);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+
+            case R.id.main_hpt:
+                HPTActivity hptActivity2 = new HPTActivity();
+                transaction.replace(R.id.tapFrame, hptActivity2);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            case R.id.main_myPage:
+                FrgMyPage frgMyPage = new FrgMyPage();
+                transaction.replace(R.id.tapFrame, frgMyPage);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+        }
     }
 }

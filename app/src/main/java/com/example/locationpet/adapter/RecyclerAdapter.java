@@ -23,7 +23,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     private Context c;
     private List<Recycler.Response> dataList;
 
-    public RecyclerAdapter(Context c, List<Recycler.Response> dataList) {
+    public RecyclerAdapter(ArrayList<Recycler.Response> dataList, Context c) {
         this.c = c;
         this.dataList = new ArrayList<>(dataList);
     }
@@ -34,7 +34,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.recyclerlist, parent, false);
-        return new MyViewHolder(view);
+
+        RecyclerAdapter.MyViewHolder holder = new MyViewHolder(view);
+
+        return holder;
     }
 
     @Override
@@ -54,7 +57,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        // 삼항 연산자
+        return (dataList != null ? dataList.size() : 0);
     }
 
     public class  MyViewHolder extends RecyclerView.ViewHolder {

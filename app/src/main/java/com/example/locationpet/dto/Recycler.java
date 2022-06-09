@@ -35,11 +35,32 @@ public class Recycler {
     }
 
     public static class Request {
-        @SerializedName("Item")
-        private Item item;
+        @SerializedName("create_at")
+        private String create_at;
+        @SerializedName("update_at")
+        private String update_at;
+        @SerializedName("postId")
+        private long postId;
+        @SerializedName("userUid")
+        private long userUid;
+        @SerializedName("postDesc")
+        private String postDesc;
+        @SerializedName("postImage")
+        private String postImage;
+        @SerializedName("postComment")
+        private int postComment;
+        @SerializedName("postLike")
+        private int postLike;
 
-        public Request(Item item) {
-            this.item = item;
+        public Request(String create_at, String update_at, long postId, long userUid, String postDesc, String postImage, int postComment, int postLike) {
+            this.create_at = create_at;
+            this.update_at = update_at;
+            this.postId = postId;
+            this.userUid = userUid;
+            this.postDesc = postDesc;
+            this.postImage = postImage;
+            this.postComment = postComment;
+            this.postLike = postLike;
         }
     }
 
