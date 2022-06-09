@@ -20,6 +20,8 @@ import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
+    String TAG ="RecyclerAdapter";
+
     private Context c;
     private List<Recycler.Response> dataList;
 

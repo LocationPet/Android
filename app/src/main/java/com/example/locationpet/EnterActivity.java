@@ -70,15 +70,8 @@ public class EnterActivity extends AppCompatActivity {
                 dataList.clear(); // 기존 배열이 존재하지 않게 초기화
                 List<Recycler.Response> recyclerData = new ArrayList<>(response.body());
                 for (Recycler.Response res : recyclerData) {
-                    String create_at = res.getCreate_at();
-                    String post_Desc = res.getPostDesc();
-                    String postImage = res.getPostImage();
-                    long postId = res.getPostId();
-                    long userUid = res.getUserUid();
-                    int postComment = res.getPostComment();
-                    int postLike = res.getPostLike();
 
-                    dataList.add(create_at);
+                    dataList.add(res);
 
                 }
             }

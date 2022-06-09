@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (preferenceHelper.getAccessToken() != null) {
-                    Intent intent = new Intent(getApplicationContext(), EnterActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), FrgEnterActivity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
